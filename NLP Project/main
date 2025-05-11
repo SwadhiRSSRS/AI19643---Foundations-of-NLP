@@ -1,0 +1,74 @@
+'''Eloquora module integration
+modules:
+1) speech to text
+2) argument mining
+3) logical fallacy detection
+4) sentiment analysis
+5) feedback generation
+6) text to speech
+7) ai discussion partner '''
+
+
+# === Eloquora Core Modules ===
+from modules.speech_to_text import transcribe_file, record_audio
+from modules.argument_mining import classify_argument_segments
+from modules.logical_fallacy import run_fallacy_detection
+from modules.Sentiment_analysis import run_emotion_analysis
+from modules.Feedback_generation import run_feedback_generation
+from modules.text_to_speech import speak_feedback_summary_with_emotion
+from modules.ai_discussion_partner import discussion_partner_flow
+
+MODULES_DIR = "modules"
+
+def run_ai_debate_coach():
+    print("\n🎙️ Step 1: Transcribing Speech...")
+    mic_or_file = input("🎤 Use Microphone? [y/n]: ").strip().lower()
+    if mic_or_file == 'y':
+        record_audio()  # Records and saves to mic_recording.wav
+        text = transcribe_file("D:\\swadhi\\6 th sem\\NLP_Project\\\modules\\mic_recording.wav")
+    else:
+        file_path = input("🎧 Enter path to audio file (.mp3 or .wav): ").strip()
+        text = transcribe_file(file_path)
+
+
+    print("\n🧠 Step 2: Argument Mining...")
+    classify_argument_segments()
+
+
+    print("\n🚫 Step 3: Logical Fallacy Detection...")
+    run_fallacy_detection()
+
+
+    print("\n💬 Step 4: Sentiment & Emotion Analysis...")
+    run_emotion_analysis()
+
+
+    print("\n📝 Step 5: Feedback Generation...")
+    run_feedback_generation()
+
+
+    print("\n🔊 Step 6: Speaking the Feedback...")
+    speak_feedback_summary_with_emotion()
+     
+    print("\n✅ AI Debate Coach Module Completed!\n")
+
+
+
+def run_ai_discussion_partner():
+    print("\n🤖 Running AI Discussion Partner ")
+    
+    discussion_partner_flow()
+if __name__ == "__main__":
+    print("                                 🧠 Welcome to ELOQUORA")
+    print("Choose your experience:\n")
+    print("1️⃣  AI Debate Coach\n")
+    print("2️⃣  AI Discussion Partner\n")
+
+    choice = input("Enter your choice (1 or 2): ").strip()
+
+    if choice == "1":
+        run_ai_debate_coach()
+    elif choice == "2":
+        run_ai_discussion_partner()
+    else:
+        print("❌ Invalid choice. Please enter 1 or 2.")
